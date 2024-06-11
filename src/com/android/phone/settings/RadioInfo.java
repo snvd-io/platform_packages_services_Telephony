@@ -106,6 +106,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.euicc.EuiccConnector;
 import com.android.internal.telephony.util.TelephonyUtils;
 import com.android.phone.R;
+import com.android.phone.utils.Utils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -489,6 +490,7 @@ public class RadioInfo extends AppCompatActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        Utils.setupEdgeToEdge(this);
         if (!android.os.Process.myUserHandle().isSystem()) {
             Log.e(TAG, "Not run from system user, don't do anything.");
             finish();
