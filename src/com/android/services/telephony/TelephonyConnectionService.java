@@ -2672,6 +2672,12 @@ public class TelephonyConnectionService extends ConnectionService {
                     createEmergencyConnection(phone, (TelephonyConnection) resultConnection,
                             numberToDial, isTestEmergencyNumber, request, needToTurnOnRadio,
                             mEmergencyStateTracker.getEmergencyRegistrationResult());
+                } else if (result == android.telephony.DisconnectCause.EMERGENCY_PERM_FAILURE) {
+                    mEmergencyConnection.removeTelephonyConnectionListener(
+                            mEmergencyConnectionListener);
+                    TelephonyConnection c = mEmergencyConnection;
+                    releaseEmergencyCallDomainSelection(true, false);
+                    retryOutgoingOriginalConnection(c, phone, true);
                 } else {
                     mEmergencyConnection = null;
                     mAlternateEmergencyConnection = null;
@@ -3234,6 +3240,12 @@ public class TelephonyConnectionService extends ConnectionService {
                     recreateEmergencyConnection(c, phone, domain);
                     mIsEmergencyCallPending = false;
                 }, mDomainSelectionMainExecutor);
+            } else if (result == android.telephony.DisconnectCause.EMERGENCY_PERM_FAILURE) {
+                mEmergencyConnection.removeTelephonyConnectionListener(
+                        mEmergencyConnectionListener);
+                TelephonyConnection ec = mEmergencyConnection;
+                releaseEmergencyCallDomainSelection(true, false);
+                retryOutgoingOriginalConnection(ec, phone, true);
             } else {
                 mEmergencyConnection = null;
                 mAlternateEmergencyConnection = null;
