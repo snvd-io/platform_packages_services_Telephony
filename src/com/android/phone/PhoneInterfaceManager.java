@@ -14337,7 +14337,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @throws SecurityException if the caller doesn't have the required permission.
      */
     @Override
-    public void requestIsProvisioned(String satelliteSubscriberId, @NonNull ResultReceiver result) {
+    public void requestIsProvisioned(@NonNull String satelliteSubscriberId,
+            @NonNull ResultReceiver result) {
         enforceSatelliteCommunicationPermission("requestIsProvisioned");
         mSatelliteController.requestIsProvisioned(satelliteSubscriberId, result);
     }
@@ -14351,7 +14352,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * @throws SecurityException if the caller doesn't have the required permission.
      */
     @Override
-    public void provisionSatellite(List<ProvisionSubscriberId> list,
+    public void provisionSatellite(@NonNull List<ProvisionSubscriberId> list,
             @NonNull ResultReceiver result) {
         enforceSatelliteCommunicationPermission("provisionSatellite");
         mSatelliteController.provisionSatellite(list, result);
