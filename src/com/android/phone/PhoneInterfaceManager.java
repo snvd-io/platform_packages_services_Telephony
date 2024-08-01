@@ -7583,8 +7583,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             }
         }
 
-        enforceTelephonyFeatureWithException(getCurrentPackageName(),
-                PackageManager.FEATURE_TELEPHONY_DATA, "isDataEnabledForReason");
+        if (!mApp.getResources().getBoolean(
+                    com.android.internal.R.bool.config_force_phone_globals_creation)) {
+            enforceTelephonyFeatureWithException(getCurrentPackageName(),
+                    PackageManager.FEATURE_TELEPHONY_DATA, "isDataEnabledForReason");
+        }
 
         final long identity = Binder.clearCallingIdentity();
         try {
@@ -7671,9 +7674,12 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public int checkCarrierPrivilegesForPackageAnyPhone(String pkgName) {
         enforceReadPrivilegedPermission("checkCarrierPrivilegesForPackageAnyPhone");
 
-        enforceTelephonyFeatureWithException(getCurrentPackageName(),
-                PackageManager.FEATURE_TELEPHONY_SUBSCRIPTION,
-                "checkCarrierPrivilegesForPackageAnyPhone");
+        if (!mApp.getResources().getBoolean(
+                    com.android.internal.R.bool.config_force_phone_globals_creation)) {
+            enforceTelephonyFeatureWithException(getCurrentPackageName(),
+                    PackageManager.FEATURE_TELEPHONY_SUBSCRIPTION,
+                    "checkCarrierPrivilegesForPackageAnyPhone");
+        }
 
         return checkCarrierPrivilegesForPackageAnyPhoneWithPermission(pkgName);
     }
