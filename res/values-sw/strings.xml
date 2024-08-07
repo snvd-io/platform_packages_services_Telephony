@@ -134,8 +134,7 @@
     <string name="updating_title" msgid="6130548922615719689">"Mipangilio ya simu"</string>
     <string name="call_settings_admin_user_only" msgid="7238947387649986286">"Mipangilio ya simu inaweza kubadilishwa na mtumiaji wa akaunti ya msimamizi."</string>
     <string name="phone_account_settings_user_restriction" msgid="9142685151087208396">"Mipangilio ya akaunti ya simu inaweza tu kubadilishwa na msimamizi au mtumiaji wa kazini."</string>
-    <!-- no translation found for phone_account_no_config_mobile_networks (7351062247756521227) -->
-    <skip />
+    <string name="phone_account_no_config_mobile_networks" msgid="7351062247756521227">"Mmiliki wa kifaa amezuia kubadilisha mipangilio ya mtandao wa simu."</string>
     <string name="call_settings_with_label" msgid="8460230435361579511">"Mipangilio (<xliff:g id="SUBSCRIPTIONLABEL">%s</xliff:g>)"</string>
     <string name="error_updating_title" msgid="2024290892676808965">"Hitilafu ya mipangilio ya kupiga simu"</string>
     <string name="reading_settings" msgid="1605904432450871183">"Inasoma mipangilio…."</string>
@@ -567,7 +566,7 @@
     <string name="emergency_information_owner_hint" msgid="6256909888049185316">"Mmiliki"</string>
     <string name="emergency_information_confirm_hint" msgid="5109017615894918914">"Gusa tena ili uangalie maelezo"</string>
     <string name="emergency_enable_radio_dialog_title" msgid="2667568200755388829">"Simu ya dharura"</string>
-    <string name="single_emergency_number_title" msgid="8413371079579067196">"Nambari ya dharura"</string>
+    <string name="single_emergency_number_title" msgid="8413371079579067196">"Namba ya dharura"</string>
     <string name="numerous_emergency_numbers_title" msgid="8972398932506755510">"Nambari za dharura"</string>
     <string name="emergency_call_shortcut_hint" msgid="1290485125107779500">"Gusa tena ili upige <xliff:g id="EMERGENCY_NUMBER">%s</xliff:g>"</string>
     <string name="emergency_enable_radio_dialog_message" msgid="1695305158151408629">"Inawasha redio..."</string>
