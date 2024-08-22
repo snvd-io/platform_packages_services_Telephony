@@ -9322,11 +9322,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      */
     @Override
     public void getCarrierRestrictionStatus(IIntegerConsumer callback, String packageName) {
-        enforceReadPermission("getCarrierRestrictionStatus");
-
+        String functionName = "getCarrierRestrictionStatus";
         enforceTelephonyFeatureWithException(packageName,
-                PackageManager.FEATURE_TELEPHONY_SUBSCRIPTION, "getCarrierRestrictionStatus");
-
+                PackageManager.FEATURE_TELEPHONY_SUBSCRIPTION, functionName);
+        try {
+            mApp.enforceCallingOrSelfPermission(
+                    android.Manifest.permission.READ_BASIC_PHONE_STATE,
+                    functionName);
+        } catch (SecurityException e) {
+            mApp.enforceCallingOrSelfPermission(permission.READ_PHONE_STATE,
+                    functionName);
+        }
         Set<Integer> carrierIds = validateCallerAndGetCarrierIds(packageName);
         if (carrierIds.contains(CarrierAllowListInfo.INVALID_CARRIER_ID)) {
             Rlog.e(LOG_TAG, "getCarrierRestrictionStatus: caller is not registered");
