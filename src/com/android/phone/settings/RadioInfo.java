@@ -292,7 +292,6 @@ public class RadioInfo extends AppCompatActivity {
     private TextView mPingHostnameV6;
     private TextView mHttpClientTest;
     private TextView mPhyChanConfig;
-    private TextView mDnsCheckState;
     private TextView mDownlinkKbps;
     private TextView mUplinkKbps;
     private TextView mEndcAvailable;
@@ -307,7 +306,6 @@ public class RadioInfo extends AppCompatActivity {
     private Switch mSimulateOutOfServiceSwitch;
     private Switch mEnforceSatelliteChannel;
     private Switch mMockSatellite;
-    private Button mDnsCheckToggleButton;
     private Button mPingTestButton;
     private Button mUpdateSmscButton;
     private Button mRefreshSmscButton;
@@ -623,7 +621,6 @@ public class RadioInfo extends AppCompatActivity {
         mSent = (TextView) findViewById(R.id.sent);
         mReceived = (TextView) findViewById(R.id.received);
         mSmsc = (EditText) findViewById(R.id.smsc);
-        mDnsCheckState = (TextView) findViewById(R.id.dnsCheckState);
         mPingHostnameV4 = (TextView) findViewById(R.id.pingHostnameV4);
         mPingHostnameV6 = (TextView) findViewById(R.id.pingHostnameV6);
         mHttpClientTest = (TextView) findViewById(R.id.httpClientTest);
@@ -747,8 +744,6 @@ public class RadioInfo extends AppCompatActivity {
         mUpdateSmscButton.setOnClickListener(mUpdateSmscButtonHandler);
         mRefreshSmscButton = (Button) findViewById(R.id.refresh_smsc);
         mRefreshSmscButton.setOnClickListener(mRefreshSmscButtonHandler);
-        mDnsCheckToggleButton = (Button) findViewById(R.id.dns_check_toggle);
-        mDnsCheckToggleButton.setOnClickListener(mDnsCheckButtonHandler);
         mCarrierProvisioningButton = (Button) findViewById(R.id.carrier_provisioning);
         if (!TextUtils.isEmpty(getCarrierProvisioningAppString())) {
             mCarrierProvisioningButton.setOnClickListener(mCarrierProvisioningButtonHandler);
@@ -848,7 +843,6 @@ public class RadioInfo extends AppCompatActivity {
         updateRadioPowerState();
         updateImsProvisionedState();
         updateProperties();
-        updateDnsCheckState();
         updateNetworkType();
         updateNrStats();
         updateEuiccInfo();
@@ -1095,12 +1089,6 @@ public class RadioInfo extends AppCompatActivity {
         mNrFrequency.setVisibility(visibility);
         ((TextView) findViewById(R.id.network_slicing_config_label)).setVisibility(visibility);
         mNetworkSlicingConfig.setVisibility(visibility);
-    }
-
-    private void updateDnsCheckState() {
-        //FIXME: Replace with a TelephonyManager call
-        mDnsCheckState.setText(mPhone.isDnsCheckDisabled()
-                ? "0.0.0.0 allowed" : "0.0.0.0 not allowed");
     }
 
     private void updateBandwidths(int dlbw, int ulbw) {
@@ -2263,14 +2251,6 @@ public class RadioInfo extends AppCompatActivity {
         mEabProvisionedSwitch.setEnabled(!IS_USER_BUILD
                 && isEnabledByPlatform && isEabProvisioningRequired());
     }
-
-    OnClickListener mDnsCheckButtonHandler = new OnClickListener() {
-        public void onClick(View v) {
-            //FIXME: Replace with a TelephonyManager call
-            mPhone.disableDnsCheck(!mPhone.isDnsCheckDisabled());
-            updateDnsCheckState();
-        }
-    };
 
     OnClickListener mOemInfoButtonHandler = new OnClickListener() {
         public void onClick(View v) {
