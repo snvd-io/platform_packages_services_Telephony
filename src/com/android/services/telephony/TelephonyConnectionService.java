@@ -4362,7 +4362,7 @@ public class TelephonyConnectionService extends ConnectionService {
                                                 context.getString(
                                                     R.string.mobile_network_settings_package),
                                                 context.getString(
-                                                    R.string.mobile_network_settings_class));
+                                                    R.string.sims_settings_class));
                                     intent.setComponent(mobileNetworkSettingsComponent);
                                     context.startActivity(intent);
                                 }
