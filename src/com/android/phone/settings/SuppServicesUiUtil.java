@@ -70,7 +70,7 @@ public class SuppServicesUiUtil {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         ComponentName mobileNetworkSettingsComponent = new ComponentName(
                                 context.getString(R.string.mobile_network_settings_package),
-                                context.getString(R.string.mobile_network_settings_class));
+                                context.getString(R.string.sims_settings_class));
                         intent.setComponent(mobileNetworkSettingsComponent);
                         context.startActivity(intent);
                     }
