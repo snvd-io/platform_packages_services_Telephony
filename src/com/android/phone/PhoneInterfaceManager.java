@@ -13170,7 +13170,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 }
             };
             mSatelliteAccessController.requestIsCommunicationAllowedForCurrentLocation(
-                    resultReceiver);
+                    resultReceiver, true);
         } else {
             // No need to check if satellite is allowed at current location when disabling satellite
             mSatelliteController.requestSatelliteEnabled(
@@ -13488,7 +13488,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     public void requestIsCommunicationAllowedForCurrentLocation(int subId,
             @NonNull ResultReceiver result) {
         enforceSatelliteCommunicationPermission("requestIsCommunicationAllowedForCurrentLocation");
-        mSatelliteAccessController.requestIsCommunicationAllowedForCurrentLocation(result);
+        mSatelliteAccessController.requestIsCommunicationAllowedForCurrentLocation(result, false);
     }
 
     /**
